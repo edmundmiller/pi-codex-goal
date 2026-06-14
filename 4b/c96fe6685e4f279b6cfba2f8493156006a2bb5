@@ -1,0 +1,25 @@
+src/tools.ts
+  s_818c01956202b2::t_c8243069c375ea 7,18,76
+test/prompts.test.ts
+  s_818c01956202b2::t_7b9f70cf5375c8 6,32-36
+README.md
+  s_818c01956202b2::t_5337d96151bcc6 165,169
+src/prompts.ts
+  s_818c01956202b2::t_abf8bc36d8035a 15-17,22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "4bc96fe6685e4f279b6cfba2f8493156006a2bb5",
+  "prompts": {},
+  "sessions": {
+    "s_818c01956202b2": {
+      "agent_id": {
+        "tool": "pi",
+        "id": "019ec68e-2a7e-750a-8cbc-f6bafecfd6a6",
+        "model": "gpt-5.5"
+      },
+      "human_author": "Edmund Miller <git@edmundmiller.dev>"
+    }
+  }
+}
