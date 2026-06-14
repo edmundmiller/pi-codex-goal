@@ -12,10 +12,14 @@ export function goalToolReference(toolName: GoalToolName): string {
   return `${toolName} (or the exposed namespaced equivalent, such as pi__${toolName})`;
 }
 
+export const TOKEN_BUDGET_FIELD_GUIDANCE =
+  "Leave token_budget unset unless the user explicitly provided a numeric token budget. Do not guess, infer, or invent a budget; omit the field by default.";
+
 export const TOOL_PROMPT_GUIDELINES = [
   GOAL_TOOL_NAME_GUIDANCE,
   `Use ${goalToolReference("get_goal")} when you need to inspect the current long-running user objective.`,
   `Use ${goalToolReference("create_goal")} only when the user explicitly asks you to start tracking a concrete goal; do not infer goals from ordinary tasks and do not create a second goal while a non-complete goal already exists. After a goal is complete, ${goalToolReference("create_goal")} replaces it with a new active goal.`,
+  TOKEN_BUDGET_FIELD_GUIDANCE,
   `Use ${goalToolReference("update_goal")} with status complete only after a completion audit proves the objective is actually achieved and no required work remains.`,
   `Before using ${goalToolReference("update_goal")}, map every explicit requirement in the goal to concrete evidence from files, command output, test results, PR state, or other real artifacts; uncertainty means the goal is not complete.`,
   `Do not use ${goalToolReference("update_goal")} merely because work is stopping, substantial progress was made, tests passed without covering every requirement, or the token budget is nearly exhausted.`,
