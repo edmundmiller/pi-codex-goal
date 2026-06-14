@@ -3,6 +3,7 @@ import test from "node:test";
 
 import {
   GOAL_TOOL_NAME_GUIDANCE,
+  TOKEN_BUDGET_FIELD_GUIDANCE,
   TOOL_PROMPT_GUIDELINES,
   budgetLimitPrompt,
   compactContinuationPrompt,
@@ -26,6 +27,13 @@ test("tool prompt guidelines include exposed and namespaced goal tool guidance",
   assert.match(combined, /get_goal \(or the exposed namespaced equivalent, such as pi__get_goal\)/);
   assert.match(combined, /create_goal \(or the exposed namespaced equivalent, such as pi__create_goal\)/);
   assert.match(combined, /update_goal \(or the exposed namespaced equivalent, such as pi__update_goal\)/);
+});
+
+test("tool prompt guidelines tell models not to invent token budgets", () => {
+  assert.match(TOKEN_BUDGET_FIELD_GUIDANCE, /Leave token_budget unset/);
+  assert.match(TOKEN_BUDGET_FIELD_GUIDANCE, /explicitly provided a numeric token budget/);
+  assert.match(TOKEN_BUDGET_FIELD_GUIDANCE, /Do not guess, infer, or invent a budget/);
+  assert.match(TOOL_PROMPT_GUIDELINES.join("\n"), /omit the field by default/);
 });
 
 test("compact continuation keeps marker detection without repeating the full objective", () => {

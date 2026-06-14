@@ -162,11 +162,11 @@ If an interactive run appears stuck on `Working...` after a built-in `read` tool
 
 `/goal` with no arguments reports the current objective, status, token budget, token usage, and elapsed active time. A plain `/goal <objective>` starts a new goal or replaces the current one after confirmation. `/goal copy` copies the current goal objective to the system clipboard, including active, paused, budget-limited, and completed goals.
 
-This intentionally matches Codex TUI behavior: token budgets are set through the model tool rather than parsed from `/goal --tokens`. This package keeps its objective size limit at 8000 Unicode characters.
+This intentionally matches Codex TUI behavior: token budgets are set through the model tool rather than parsed from `/goal --tokens`. Model-facing guidance tells agents to leave `token_budget` unset unless the user explicitly provided a numeric budget. This package keeps its objective size limit at 8000 Unicode characters.
 
 ## Model Tools
 
-`create_goal` starts a goal with an objective and optional positive token budget. It fails if a non-complete goal already exists unless `replace_existing: true` is provided. After a goal is complete, `create_goal` replaces it with a new active goal.
+`create_goal` starts a goal with an objective and an optional positive token budget only when explicitly user-provided. Agents should not guess, infer, or invent token budgets. It fails if a non-complete goal already exists unless `replace_existing: true` is provided. After a goal is complete, `create_goal` replaces it with a new active goal.
 
 `get_goal` returns the current goal state and usage.
 
